@@ -2,28 +2,37 @@
 namespace App\Traits;
 
   trait Info {
-    protected static $class;
+    
 
-      public static function getClasse() {
-        if(static::$class === null) {
-          $class_name = explode('\\', get_called_class());
-          static::$class = strtolower(end($class_name));
-        }
-        return static::$class;
-      }    
+      public function __get($key) {
+        $method = 'get'. ucfirst($key);
+        $this->$key = $this->$method();
+        return $this->$key;
+      }
 
       public function getId() {
-        $column = static::getClasse()."_id";
+        $column = static::getClass()."_id";
         return $this->$column;
       }
 
       public function getName() {
-        $column = static::getClasse()."_name";
+        $column = static::getClass()."_name";
         return $this->$column;
       }
 
       public function getInfo(){
-        $column = static::getClasse()."_info";
+        $column = static::getClass()."_info";
         return $this->$column;
+      }
+
+      public function getPicture(){
+        $column = static::getClass()."_picture";
+        return $this->$column;
+      }
+
+      public static function isEmail($email) {
+        if( filter_var($email,FILTER_VALIDATE_EMAIL)) {
+          return filter_var($email,FILTER_SANITIZE_EMAIL);
+        }
       }
   }

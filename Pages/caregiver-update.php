@@ -1,7 +1,7 @@
 <?php
 
 use App\Table\Caregiver;
-$class = Caregiver::getClasse();
+$class = Caregiver::getClass();
 $chefs = Caregiver::all();
 $caregiver = Caregiver::find($_GET['id']);
 
@@ -111,7 +111,7 @@ if (!empty($_POST)){
 
   <div>
     <label for="<?= $class?>_picture">Photo</label>
-    <input type="file" name="<?= $class?>_picture" max-size="1000" value="<?= $caregiver->caregiver_picture?>">
+    <input type="file" name="<?= $class?>_picture" >
     
     <img src="Public/img/upload/<?= $caregiver->caregiver_picture == "" ? "avatar.jpeg" : "$caregiver->caregiver_picture" ?>" alt="" class="w-25">
     

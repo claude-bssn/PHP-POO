@@ -52,7 +52,7 @@ create table caregivers(
 create table animals(
   animal_id	int not null auto_increment,
   animal_name	varchar(100) not null,
-  animal_age date not null,
+  animal_age int not null,
   animal_species varchar(255) not null,
   animal_check_in date not null,	
   animal_sex varchar(100) DEFAULT null,

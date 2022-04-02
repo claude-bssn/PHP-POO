@@ -1,19 +1,10 @@
 <?php
 namespace App\Table;
 use App\App;
-use App\Traits\Info;
 use App\Traits\Photo;
 
   class Caregiver extends Table {
-    use Info, Photo;
-   
-   /* public function __toString() {
-      $caregivers = self::all();
-    return "<?php foreach($caregivers as $caregiver) : ?>
-        <?= $caregiver->name;?>
-      <?php endforeach ; ?>";
-
-    }*/
+    use  Photo;
 
     public static function addCaregiver(
       $name	,
@@ -111,7 +102,7 @@ use App\Traits\Photo;
         ",
         [
           'id' => $id,
-          'name' => $name	,
+          'name' => $name,
           'firstname' => $firstname,		
           'check_in' => $check_in,	
           'gender' => $gender,

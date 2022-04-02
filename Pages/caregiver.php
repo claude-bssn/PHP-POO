@@ -15,7 +15,7 @@ $caregivers = Caregiver::all();
       <h5 class="card-title"><?= $caregiver->caregiver_gender?> <?= $caregiver->name?> <?= $caregiver->caregiver_firstname?></h5>
       <p class="card-text">Téléphone : <?= $caregiver->caregiver_phone?></p>
       <p class="card-text">E-mail : <?= $caregiver->caregiver_mail?></p>
-      <p class="card-text"> Spécialité : <?= $caregiver->caregiver_specialty?></p>
+      <p class="card-text"> Spécialité : <?= $caregiver->caregiver_check_in?></p>
       <a href="/caregiver-details?id=<?= $caregiver->caregiver_id?>" class="btn btn-primary">Détails</a>
     </div>
   </div>  

@@ -1,7 +1,7 @@
 <?php
 
 use App\Table\Caregiver;
-$class = Caregiver::getClasse();
+$class = Caregiver::getClass();
 $caregivers = Caregiver::all();
 $protocol = $_SERVER["REQUEST_SCHEME"];
 $host = $_SERVER['HTTP_HOST'];
@@ -18,7 +18,7 @@ if (!empty($_POST)){
       $check_in = $_POST[$class.'_check_in'] === "" ? null : $_POST[$class.'_check_in'],	
       $gender = $_POST[$class.'_gender'],	
       $phone = $_POST[$class.'_phone'],	
-      $mail = $_POST[$class.'_mail'],			
+      $mail = Caregiver::isEmail($_POST[$class.'_mail']),			
       $picture = Caregiver::$file_name,
       $specialty = $_POST[$class.'_specialty'],	
       $treatment_per_day = $_POST[$class.'_treatment_per_day'],	
@@ -107,7 +107,7 @@ if (!empty($_POST)){
 
   <div>
     <label for="<?= $class?>_picture">Photo</label>
-    <input type="file" name="<?= $class?>_picture">
+    <input type="file" name="<?= $class?>_picture" >
   </div>    
 
   <input type="submit">

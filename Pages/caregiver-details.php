@@ -1,6 +1,6 @@
 <?php
 use App\Table\Caregiver;
-$class = Caregiver::getClasse();
+$class = Caregiver::getClass();
 $caregiver = Caregiver::find($_GET['id']);
 $chef = Caregiver::find($caregiver->caregiver_supervisor);
 ?>

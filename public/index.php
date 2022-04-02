@@ -27,6 +27,10 @@ switch ($slug) {
   case '/animal-update':
     require '../Pages/animal-update.php';
     break;
+  case '/animal-details':
+    require '../Pages/animal-details.php';
+    break;
+  
     // caregiver
   case '/caregiver':
     require '../Pages/caregiver.php';
