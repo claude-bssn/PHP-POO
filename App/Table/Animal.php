@@ -8,16 +8,6 @@ use App\Traits\Photo;
  class Animal extends Table implements AnimalInterface {
   use Photo;
 
-  
-  // public static $name;
-  // public static $check_in;
-  // public static $species;
-  // public static $age;
-  // public static $picture;
-
-  public function __construct() {
-    
-  }
 
   public static function addAnimal(
     $name	,
@@ -153,9 +143,9 @@ use App\Traits\Photo;
   }
 
   public static function getCaregiver($id) {
- 
     return Caregiver::find($id);
-  }
+  }  
 
   
+
 }

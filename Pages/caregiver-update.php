@@ -21,7 +21,7 @@ if (!empty($_POST)){
       $check_in = $_POST[$class.'_check_in'] === "" ? null : $_POST[$class.'_check_in'],	
       $gender = $_POST[$class.'_gender'],	
       $phone = $_POST[$class.'_phone'],	
-      $mail = $_POST[$class.'_mail'],			
+      $mail = Caregiver::isEmail($_POST[$class.'_mail']),			
       $picture = Caregiver::$file_name === null ? $caregiver->caregiver_picture : Caregiver::$file_name,
       $specialty = $_POST[$class.'_specialty'],	
       $treatment_per_day = $_POST[$class.'_treatment_per_day'],	

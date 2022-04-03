@@ -68,7 +68,7 @@ create table animals(
   CONSTRAINT FK_animals_caregiver_id FOREIGN KEY (caregiver_id) REFERENCES caregivers (caregiver_id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
-create table caregiver_annimals(
+create table caregiver_animals(
   animal_id	int not null,
   caregiver_id int not null,
   PRIMARY KEY(animal_id, caregiver_id),

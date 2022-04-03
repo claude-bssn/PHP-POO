@@ -36,9 +36,11 @@ class Database {
     $req->setFetchMode(PDO::FETCH_CLASS, $class_name);
     if($one){
       $data = $req->fetch();
-    } else{
+    }else {
       $data = $req->fetchAll();
     }
+
     return $data;
   }
+
 }

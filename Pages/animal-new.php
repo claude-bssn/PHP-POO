@@ -2,6 +2,8 @@
 
 use App\Table\Animal;
 use App\Table\Caregiver;
+use App\Table\Caregiver_animal;
+
 $class = Animal::getClass();
 $caregivers = Caregiver::all();
 $protocol = $_SERVER["REQUEST_SCHEME"];
@@ -11,25 +13,26 @@ if (!empty($_POST)){
   if($_FILES){
     Animal::addPhoto($_FILES[$class.'_picture']);
   }
-  
-  $file = 
-    $new_animal = Animal::addAnimal( 
-      $name = $_POST[$class.'_name'],
-      $age = $_POST[$class.'_age'],	
-      $check_in = $_POST[$class.'_check_in'] === "" ? null : $_POST[$class.'_check_in'],	
-      $sex = $_POST[$class.'_sex'],	
-      $chip = $_POST[$class.'_chip'],	
-      $species = $_POST[$class.'_species'],			
-      $picture = Animal::$file_name,
-      $weight = $_POST[$class.'_weight'],	
-      $caregiver = $_POST['caregiver_id'],	
-      $care = $_POST[$class.'_care'],	
-      $adoption_date = $_POST[$class.'_adoption_date'] === ""? null : $_POST[$class.'_adoption_date'],	
-      $death = $_POST[$class.'_death'] === "" ? null : $_POST[$class.'_death'],			
-      $info = $_POST[$class.'_info']	
-    );
-    header("Location: $protocol://$host/animal");
-    exit;
+  $new_animal = Animal::addAnimal( 
+    $name = $_POST[$class.'_name'],
+    $age = $_POST[$class.'_age'],	
+    $check_in = $_POST[$class.'_check_in'] === "" ? null : $_POST[$class.'_check_in'],	
+    $sex = $_POST[$class.'_sex'],	
+    $chip = $_POST[$class.'_chip'],	
+    $species = $_POST[$class.'_species'],			
+    $picture = Animal::$file_name,
+    $weight = $_POST[$class.'_weight'],	
+    $caregiver = $_POST['caregiver_id'],	
+    $care = $_POST[$class.'_care'],	
+    $adoption_date = $_POST[$class.'_adoption_date'] === ""? null : $_POST[$class.'_adoption_date'],	
+    $death = $_POST[$class.'_death'] === "" ? null : $_POST[$class.'_death'],			
+    $info = $_POST[$class.'_info']	
+  );
+  $id_class = Animal::getLastId()[0]->id;
+  Caregiver_animal::addCaregiver($id_class , $_POST['caregivers']);
+
+  header("Location: $protocol://$host/animal");
+  exit;
 }
 ?>
 
@@ -91,13 +94,18 @@ if (!empty($_POST)){
   </div>
 
   <div>
-    <label for="caregiver_id">Soignant favoris faire un truc avec checkBox</label>
+    <label for="caregiver_id">Soignant favoris</label>
     <select name="caregiver_id">
-    <option value=>Aucun</option>
       <?php foreach ($caregivers as $caregiver) :?>
-        <option value=<?= $caregiver->caregiver_id ?>><?= $caregiver->caregiver_name ?></option>
+        <option value=<?= $caregiver->caregiver_id ?>> <?= $caregiver->caregiver_name ?></option>
       <?php endforeach; ?>
     </select>
+
+    <p>Soignants</p>
+    <?php foreach ($caregivers as $caregiver) :?>
+      <input type="checkbox" name="caregivers[<?= $caregiver->caregiver_id ?>]" id="caregivers[<?= $caregiver->caregiver_id ?>]">
+      <label for="caregivers[<?= $caregiver->caregiver_id ?>]"><?= $caregiver->caregiver_name?> <?= $caregiver->caregiver_firstname?></label>
+      <?php endforeach; ?>
   </div>
 
   <div>

@@ -2,14 +2,16 @@
 
 use App\Table\Animal;
 use App\Table\Caregiver;
+use App\Table\Caregiver_animal;
+
+
 $class = Animal::getClass();
 $caregivers = Caregiver::all();
 $animal = Animal::find($_GET['id']);
 $id_caregiver= $animal->caregiver_id;
 
 $fav_caregiver = Animal::getCaregiver($id_caregiver);
-
-// var_dump($animal->id);
+$caregivers_by_animal_id = Caregiver_animal::getCaregivers($animal->id);
 $protocol = $_SERVER["REQUEST_SCHEME"];
 $host = $_SERVER['HTTP_HOST'];
 
@@ -17,8 +19,7 @@ if (!empty($_POST)){
   if($_FILES){
     Animal::addPhoto($_FILES[$class.'_picture']);
   }
-  
-  $file = 
+
   $new_animal = Animal::updateAnimal( 
     $id = $animal->id,
     $name = $_POST[$class.'_name'],
@@ -35,12 +36,14 @@ if (!empty($_POST)){
     $death = $_POST[$class.'_death'] === "" ? $animal->animal_death : $_POST[$class.'_death'],			
     $info = $_POST[$class.'_info'],	
   );
-    // header("Location: $protocol://$host/animal-details?id=$id");
-    // exit;
+  Caregiver_animal::updateCaregiver($animal->id , $_POST['caregivers']);
+  
+  header("Location: $protocol://$host/animal-details?id=$id");
+  exit;
 }
 ?>
 
-<h1>Ajouter un animal</h1>
+<h1>Mise a jour de <?= $animal->animal_name?></h1>
 <form action="#" method="POST" enctype="multipart/form-data">
 
   <div>
@@ -100,13 +103,21 @@ if (!empty($_POST)){
   </div>
 
   <div>
-    <label for="caregiver_id">Soignant favoris faire un truc avec checkBox</label>
+    <label for="caregiver_id">Soignant favoris</label>
     <select name="caregiver_id">
     <option value=<?= $fav_caregiver->caregiver_id?>><?= $fav_caregiver->caregiver_name?></option>
       <?php foreach ($caregivers as $caregiver) :?>
         <option value=<?= $caregiver->caregiver_id ?>><?= $caregiver->caregiver_name ?></option>
       <?php endforeach; ?>
     </select>
+  </div>
+
+  <p>Soignants</p>
+    <?php foreach ($caregivers as $caregiver) :?>
+      
+      <input type="checkbox" name="caregivers[<?= $caregiver->caregiver_id ?>]" id="caregivers[<?= $caregiver->caregiver_id ?>]" <?= in_array($caregiver->caregiver_id, $caregivers_by_animal_id)? "checked" : ""?>>
+      <label for="caregivers[<?= $caregiver->caregiver_id ?>]"><?= $caregiver->caregiver_name?> <?= $caregiver->caregiver_firstname?></label>
+      <?php endforeach; ?>
   </div>
 
   <div>
