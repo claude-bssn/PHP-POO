@@ -9,20 +9,31 @@
 </head>
 <body class="d-flex flex-column justify-content-center">
   <header>
-    <nav>
-      <ul>
-        <li>
-          <a href="/home">Home</a>
-          <a href="/caregiver">Soignants</a>
-          <a href="/animal">Animaux</a>
-          <a href="/owner">Propriétaires</a>
-          <a href="/adoption">Adoptions</a>
+    <nav class="d-flex flex-column justify-content-center">
+      <ul class="nav nav-pills">
+        <li class="nav-item">
+          <a href="/home" class="nav-link">Home</a>
+        </li>
+          <li class="nav-item">
+          <a href="/caregiver" class="nav-link">Soignants</a>
+          </li>
+          <li class="nav-item">
+            <a href="/animal" class="nav-link">Animaux</a>
+          </li>
+          <li class="nav-item">
+            <a href="/owner" class="nav-link">Propriétaires</a>
+          </li>
+          <li class="nav-item">
+            <a href="/adoption" class="nav-link">Adoptions</a>
+          </li>
         </li>
       </ul>
     </nav>
   </header>
 
+
   <?= $content?>
+
 
 </body>
 </html>
