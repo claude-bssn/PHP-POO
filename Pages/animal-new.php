@@ -13,6 +13,7 @@ if (!empty($_POST)){
   if($_FILES){
     Animal::addPhoto($_FILES[$class.'_picture']);
   }
+  
   $new_animal = Animal::addAnimal( 
     $name = $_POST[$class.'_name'],
     $age = $_POST[$class.'_age'],	

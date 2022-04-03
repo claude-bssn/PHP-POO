@@ -15,6 +15,7 @@
           <a href="/home">Home</a>
           <a href="/caregiver">Soignants</a>
           <a href="/animal">Animaux</a>
+          <a href="/owner">Propriétaires</a>
         </li>
       </ul>
     </nav>

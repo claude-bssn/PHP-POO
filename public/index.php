@@ -44,6 +44,21 @@ switch ($slug) {
   case '/caregiver-details':
     require '../Pages/caregiver-details.php';
     break;
+
+  // owner
+  case '/owner':
+    require '../Pages/owner.php';
+    break;
+  case '/owner-new':
+    require '../Pages/owner-new.php';
+    break;
+  case '/owner-update':
+    require '../Pages/owner-update.php';
+    break;
+  case '/owner-details':
+    require '../Pages/owner-details.php';
+    break;
+    
   default:
     require '../Pages/404.php';
     break;

@@ -1,5 +1,4 @@
 <?php
-use App\Table\Caregiver;
 use App\Table\Animal;
 
 $class = Animal::getClass();

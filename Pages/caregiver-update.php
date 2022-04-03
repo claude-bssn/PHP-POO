@@ -13,7 +13,6 @@ if (!empty($_POST)){
     Caregiver::addPhoto($_FILES[$class.'_picture']);
   }
   
-  $file = 
     $new_caregiver = Caregiver::updateCaregiver( 
       $id = $caregiver->caregiver_id,
       $name = $_POST[$class.'_name'],
