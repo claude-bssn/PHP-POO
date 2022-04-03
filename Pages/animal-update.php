@@ -22,19 +22,18 @@ if (!empty($_POST)){
 
   $new_animal = Animal::updateAnimal( 
     $id = $animal->id,
-    $name = $_POST[$class.'_name'],
-    $age = $_POST[$class.'_age'],	
-    $check_in = $_POST[$class.'_check_in'] === "" ? $animal->animal_check_in : $_POST[$class.'_check_in'],	
-    $species = $_POST[$class.'_species'],			
-    $sex = $_POST[$class.'_sex'],	
-    $chip = $_POST[$class.'_chip'],	
-    $picture = Animal::$file_name === null ? $animal->picture : Animal::$file_name,
-    $weight = $_POST[$class.'_weight'],	
-    $care = $_POST[$class.'_care'],	
-    $caregiver = $_POST['caregiver_id'],	
-    $adoption_date = $_POST[$class.'_adoption_date'] === ""? $animal->animal_adoption_date : $_POST[$class.'_adoption_date'],	
-    $death = $_POST[$class.'_death'] === "" ? $animal->animal_death : $_POST[$class.'_death'],			
-    $info = $_POST[$class.'_info'],	
+    $name = Animal::cleanString($_POST[$class.'_name']),
+    $age = Animal::cleanNum($_POST[$class.'_age']),	
+    $check_in = $_POST[$class.'_check_in'] === "" ? null : $_POST[$class.'_check_in'],	
+    $sex = Animal::cleanString($_POST[$class.'_sex']),	
+    $chip = Animal::cleanString($_POST[$class.'_chip']),	
+    $species = Animal::cleanString($_POST[$class.'_species']),			
+    $picture = Animal::$file_name,
+    $weight = Animal::cleanNum($_POST[$class.'_weight']),	
+    $caregiver = Animal::cleanNum($_POST['caregiver_id']),	
+    $care = Animal::cleanString($_POST[$class.'_care']),	
+    $death = $_POST[$class.'_death'] === "" ? null : $_POST[$class.'_death'],			
+    $info = Animal::cleanString($_POST[$class.'_info'])	
   );
   Caregiver_animal::updateCaregiver($animal->id , $_POST['caregivers']);
   
@@ -98,11 +97,6 @@ if (!empty($_POST)){
   </div>
 
   <div>
-    <label for="<?= $class?>_adoption_date">Date d'adoption</label>
-    <input type="date" name="<?= $class?>_adoption_date" value="<?= $animal->animal_adoption_date?>">
-  </div>
-
-  <div>
     <label for="caregiver_id">Soignant favoris</label>
     <select name="caregiver_id">
     <option value=<?= $fav_caregiver->caregiver_id?>><?= $fav_caregiver->caregiver_name?></option>
@@ -114,7 +108,6 @@ if (!empty($_POST)){
 
   <p>Soignants</p>
     <?php foreach ($caregivers as $caregiver) :?>
-      
       <input type="checkbox" name="caregivers[<?= $caregiver->caregiver_id ?>]" id="caregivers[<?= $caregiver->caregiver_id ?>]" <?= in_array($caregiver->caregiver_id, $caregivers_by_animal_id)? "checked" : ""?>>
       <label for="caregivers[<?= $caregiver->caregiver_id ?>]"><?= $caregiver->caregiver_name?> <?= $caregiver->caregiver_firstname?></label>
       <?php endforeach; ?>

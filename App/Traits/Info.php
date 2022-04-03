@@ -2,6 +2,7 @@
 namespace App\Traits;
 
   trait Info {
+
     public function __get($key) {
       $method = 'get'. ucfirst($key);
       $this->$key = $this->$method();
@@ -29,6 +30,14 @@ namespace App\Traits;
     }
 
     public static function isEmail($email) {
-      return filter_var($email,FILTER_VALIDATE_EMAIL);
+      return filter_var($email, FILTER_VALIDATE_EMAIL);
+    }    
+    
+    public static function cleanNum($num) {
+      return filter_var($num, FILTER_SANITIZE_NUMBER_INT);
+    }
+
+    public static function cleanString($string) {
+      return  htmlspecialchars($string);
     }
   }

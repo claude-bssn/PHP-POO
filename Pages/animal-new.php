@@ -15,19 +15,18 @@ if (!empty($_POST)){
   }
   
   $new_animal = Animal::addAnimal( 
-    $name = $_POST[$class.'_name'],
-    $age = $_POST[$class.'_age'],	
+    $name = Animal::cleanString($_POST[$class.'_name']),
+    $age = Animal::cleanNum($_POST[$class.'_age']),	
     $check_in = $_POST[$class.'_check_in'] === "" ? null : $_POST[$class.'_check_in'],	
-    $sex = $_POST[$class.'_sex'],	
-    $chip = $_POST[$class.'_chip'],	
-    $species = $_POST[$class.'_species'],			
+    $sex = Animal::cleanString($_POST[$class.'_sex']),	
+    $chip = Animal::cleanString($_POST[$class.'_chip']),	
+    $species = Animal::cleanString($_POST[$class.'_species']),			
     $picture = Animal::$file_name,
-    $weight = $_POST[$class.'_weight'],	
-    $caregiver = $_POST['caregiver_id'],	
-    $care = $_POST[$class.'_care'],	
-    $adoption_date = $_POST[$class.'_adoption_date'] === ""? null : $_POST[$class.'_adoption_date'],	
+    $weight = Animal::cleanNum($_POST[$class.'_weight']),	
+    $caregiver = Animal::cleanNum($_POST['caregiver_id']),	
+    $care = Animal::cleanString($_POST[$class.'_care']),	
     $death = $_POST[$class.'_death'] === "" ? null : $_POST[$class.'_death'],			
-    $info = $_POST[$class.'_info']	
+    $info = Animal::cleanString($_POST[$class.'_info'])	
   );
   $id_class = Animal::getLastId()[0]->id;
   Caregiver_animal::addCaregiver($id_class , $_POST['caregivers']);
@@ -80,7 +79,7 @@ if (!empty($_POST)){
   </div>
 
   <div>
-    <label for="<?= $class?>_weight">Poids</label>
+    <label for="<?= $class?>_weight">Poids en gr.</label>
     <input type="number" name="<?= $class?>_weight" required>
   </div>
 
@@ -89,10 +88,6 @@ if (!empty($_POST)){
     <textarea name="<?= $class?>_care" cols="50" rows="8"></textarea>
   </div>
 
-  <div>
-    <label for="<?= $class?>_adoption_date">Date d'adoption</label>
-    <input type="date" name="<?= $class?>_adoption_date">
-  </div>
 
   <div>
     <label for="caregiver_id">Soignant favoris</label>

@@ -21,7 +21,7 @@ class Refuge extends Table {
       true);
   }
 
-  public static function addRefuge($name, $address, $phone) {
+  public static function addRefuge( $name, $address, $phone) {
     App::getDB()->prepare(
       "INSERT into refuges (refuge_name, refuge_address, refuge_phone)
       value (:name, :address, :phone )",

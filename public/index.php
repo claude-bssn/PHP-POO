@@ -58,6 +58,20 @@ switch ($slug) {
   case '/owner-details':
     require '../Pages/owner-details.php';
     break;
+
+  // adoption
+  case '/adoption':
+    require '../Pages/adoption.php';
+    break;
+  case '/adoption-new':
+    require '../Pages/adoption-new.php';
+    break;
+  case '/adoption-update':
+    require '../Pages/adoption-update.php';
+    break;
+  case '/adoption-details':
+    require '../Pages/adoption-details.php';
+    break;
     
   default:
     require '../Pages/404.php';

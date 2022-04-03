@@ -3,6 +3,14 @@ namespace App\Table;
 use App\App;
 
   class Owner extends Table {
+    private $_owner_firstname;
+
+    public function __construct()
+    {
+      $this->_owner_firstname;
+       
+    }
+
     public static function addOwner(
       $name	,
       $firstname,		
@@ -80,5 +88,20 @@ use App\App;
         __CLASS__,
         true
       );
+    }
+    public function getFirstname() {
+      echo($this->owner_firstname." ");
+      return $this;
+    }
+
+    public static function animalByOwner($id) {
+      return App::getDB()->prepare(
+        "SELECT *
+        FROM animals a
+        LEFT JOIN adoptions ad ON ad.animal_id = a.animal_id
+        WHERE ad.owner_id = :id", 
+        ['id' => $id], 
+        __CLASS__,
+        false);
     }
   }

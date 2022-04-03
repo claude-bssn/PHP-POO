@@ -16,6 +16,7 @@
           <a href="/caregiver">Soignants</a>
           <a href="/animal">Animaux</a>
           <a href="/owner">Propriétaires</a>
+          <a href="/adoption">Adoptions</a>
         </li>
       </ul>
     </nav>

@@ -93,6 +93,7 @@ create table adoptions(
   animal_id int not null,
   owner_id int not null,
   adoption_date date not null,
+  adoption_return_date date DEFAULT null,
   adoption_price float not null,
   adoption_info text DEFAULT null,
   PRIMARY KEY(adoption_id),

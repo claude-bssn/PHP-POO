@@ -8,7 +8,7 @@ if (!empty($_POST)){
     $name = $_POST['refuge_name'];
     $address = $_POST['refuge_address'];
     $phone = $_POST['refuge_phone'];
-    $new_Refuge = Refuge::addRefuge($name, $address, $phone);
+    $new_Refuge = Refuge::addRefuge(Refuge::cleanString($name), Refuge::cleanString($address), Refuge::cleanNum($phone));
     header("Location: $protocol://$host/home");
     exit;
 }

@@ -11,7 +11,7 @@ $owners = Owner::all();
     
     <div class="card" style="width: 18rem;">
     <div class="card-body">
-      <h5 class="card-title"><?= $owner->name?> <?= $owner->owner_firstname?></h5>
+      <h5 class="card-title"><?= $owner->getFirstname()->name?> </h5>
       <p class="card-text">Téléphone : <?= $owner->owner_phone?></p>
       <p class="card-text">E-mail : <?= $owner->owner_mail?></p>
       <p class="card-text"> Spécialité : <?= $owner->owner_inscription_date?></p>

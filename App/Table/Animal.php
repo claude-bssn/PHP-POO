@@ -10,7 +10,7 @@ use App\Traits\Photo;
 
 
   public static function addAnimal(
-    $name	,
+    $name,
     $age,		
     $check_in,
     $sex,
@@ -20,7 +20,6 @@ use App\Traits\Photo;
     $weight,
     $caregiver,
     $care,
-    $adoption_date,
     $death,		
     $info
     ) {
@@ -36,7 +35,6 @@ use App\Traits\Photo;
           animal_weight,
           caregiver_id,
           animal_care,
-          animal_adoption_date,
           animal_death,		
           animal_info
           )
@@ -51,7 +49,6 @@ use App\Traits\Photo;
           :weight, 
           :caregiver,
           :care, 
-          :adoption_date, 
           :death, 
           :info
         )",
@@ -66,7 +63,6 @@ use App\Traits\Photo;
           'weight' => $weight,
           'caregiver' => $caregiver,
           'care' => $care,
-          'adoption_date' => $adoption_date,
           'death' => $death,		
           'info' => $info
         ],
@@ -85,9 +81,8 @@ use App\Traits\Photo;
     $chip,		
     $picture,
     $weight,
-    $care,
     $caregiver,
-    $adoption_date,
+    $care,
     $death,		
     $info
   ) {
@@ -104,7 +99,6 @@ use App\Traits\Photo;
         animal_weight = :weight,
         animal_care = :care,
         caregiver_id = :caregiver,
-        animal_adoption_date = :adoption_date,
         animal_death = :death,		
         animal_info = :info
       WHERE animal_id = :id ",
@@ -118,9 +112,8 @@ use App\Traits\Photo;
         'chip' => $chip,		
         'picture' => $picture,
         'weight' => $weight,
-        'care' => $care,
         'caregiver' => $caregiver,
-        'adoption_date' => $adoption_date,
+        'care' => $care,
         'death' => $death,		
         'info' => $info
       ],
@@ -146,6 +139,52 @@ use App\Traits\Photo;
     return Caregiver::find($id);
   }  
 
+  public static function allAvailable() {
+    return App::getDB()->prepare(
+      "SELECT *
+      FROM animals
+      WHERE animal_adoption_date is NULL
+      ",
+      [],
+      __CLASS__,
+      false
+    );
+  }
+
+  public static function getAdoptionDateByAnimal($animal_id) {
+    return App::getDB()->prepare(
+      "SELECT a.adoption_date
+      FROM adoptions a 
+      WHERE animal_id = :animal_id",
+      ['animal_id' => $animal_id], 
+      get_called_class(),
+      false);
+  }
+
+  public static function setReturnDate($animal_id, $date) {
+    return App::getDB()->prepare(
+      "UPDATE `animals` 
+      SET `animal_adoption_date` = :date 
+      WHERE `animals`.`animal_id` = :animal_id",
+      [
+        'date' => $date,
+        'animal_id' => $animal_id
+      ],
+      __CLASS__
+    );
+  }
   
+  public static function setAdoptionDate($animal_id, $date) {
+    return App::getDB()->prepare(
+      "UPDATE `animals` 
+      SET `animal_adoption_date` = :date 
+      WHERE `animals`.`animal_id` = :animal_id",
+      [
+        'date' => $date,
+        'animal_id' => $animal_id
+      ],
+      __CLASS__
+    );
+  }
 
 }

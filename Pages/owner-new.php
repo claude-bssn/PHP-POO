@@ -8,13 +8,13 @@ $host = $_SERVER['HTTP_HOST'];
 if (!empty($_POST)){
    
     $new_owner = Owner::addOwner( 
-      $name = $_POST[$class.'_name'],
-      $firstname = $_POST[$class.'_firstname'],	
+      $name = Owner::cleanString($_POST[$class.'_name']),
+      $firstname = Owner::cleanString($_POST[$class.'_firstname']),	
       $inscription_date = $_POST[$class.'_inscription_date'] === "" ? null : $_POST[$class.'_inscription_date'],	
-      $gender = $_POST[$class.'_gender'],	
-      $phone = $_POST[$class.'_phone'],	
+      $address = Owner::cleanString($_POST[$class.'_address']),	
+      $phone = Owner::cleanNum($_POST[$class.'_phone']),	
       $mail = Owner::isEmail($_POST[$class.'_mail']),
-      $info = $_POST[$class.'_info']	
+      $info = Owner::cleanString($_POST[$class.'_info'])
     );
     header("Location: $protocol://$host/owner");
     exit;
@@ -22,7 +22,7 @@ if (!empty($_POST)){
 ?>
 
 
-<h1>Ajouter un soignant</h1>
+<h1>Ajouter un propriétaire</h1>
 <form action="#" method="POST" enctype="multipart/form-data">
 
   <div>
@@ -33,6 +33,11 @@ if (!empty($_POST)){
   <div>
     <label for="<?= $class?>_firstname">Prénom</label>
     <input type="text" name="<?= $class?>_firstname" required>
+  </div>
+
+  <div>
+    <label for="<?= $class?>_address">Adresse</label>
+    <input type="text" name="<?= $class?>_address" required>
   </div>
 
   <div>
