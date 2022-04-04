@@ -43,6 +43,9 @@ le sexe) → Affichage format « Card » recommandé mais format tableau : OK.
 Information : Les différentes pages (front) doivent être relié entre elle par des liens cliquable.
 Exemple : Sur la page qui liste les animaux, on doit aller sur une page d’un animal
 
+## <span style="color:green"> Par manque de temps ce premier livrable ne contient pas la gestion des cages, elle sera implémenté plus tard.</span>
+
+
 ## Mise en route du projet 
 
 1 - créer la base ```refuge```  
