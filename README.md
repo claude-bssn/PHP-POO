@@ -42,3 +42,12 @@ le sexe) → Affichage format « Card » recommandé mais format tableau : OK.
 
 Information : Les différentes pages (front) doivent être relié entre elle par des liens cliquable.
 Exemple : Sur la page qui liste les animaux, on doit aller sur une page d’un animal
+
+## Mise en route du projet 
+
+1 - créer la base ```refuge```  
+2 - importer le dump ```refuge.sql```  
+3 - lancer le server php de votre choix  
+4 - se rendre sur votre localhost   
+5 - enjoy !
+
