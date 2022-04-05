@@ -1,9 +1,3 @@
-<?php
-use App\Table\Caregiver;
-
-$caregivers = Caregiver::all();
-?>
-
 <a href="/caregiver-new" class="btn btn-primary">Ajouter un Soignant</a>
 
 <div class="d-flex flex-wrap justify-content-around">

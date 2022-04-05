@@ -1,9 +1,3 @@
-<?php
-use App\Table\Owner;
-
-$owners = Owner::all();
-?>
-
 <a href="/owner-new" class="btn btn-primary">Ajouter un propriétaire</a>
 
 <div class="d-flex flex-wrap justify-content-around">

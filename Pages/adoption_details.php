@@ -1,8 +1,3 @@
-<?php
-use App\Table\Adoption;
-
-$adoption = Adoption::findExtended($_GET['id']);
-?>
 <div class="d-flex justify-content-center">
   <div class="card mb-3 w-50 center">
     <img src="Public/img/<?= $adoption->animal_picture == "" ? "avatar_animal.jpg" : "upload/$adoption->animal_picture" ?>" 

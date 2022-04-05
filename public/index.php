@@ -5,76 +5,76 @@ $slug =  explode('?', $_SERVER['REQUEST_URI'])[0];
 ob_start();
 switch ($slug) {
   case '/':
-    require '../Pages/home.php';
+    require '../Controller/home_controller.php';
     break;
   case '/home':
-    require '../Pages/home.php';
+    require '../Controller/home_controller.php';
     break;
     // refuge
   case '/refuge':
-    require '../Pages/refuge.php';
+    require '../Controller/refuge_controller.php';
     break;
   case '/refuge-update':
-    require '../Pages/refuge-update.php';
+    require '../Controller/refuge_update_controller.php';
     break;
     // animal
   case '/animal':
-    require '../Pages/animal.php';
+    require '../Controller/animal_controller.php';
     break;
   case '/animal-new':
-    require '../Pages/animal-new.php';
+    require '../Controller/animal_new_controller.php';
     break;
   case '/animal-update':
-    require '../Pages/animal-update.php';
+    require '../Controller/animal_update_controller.php';
     break;
   case '/animal-details':
-    require '../Pages/animal-details.php';
+    require '../Controller/animal_details_controller.php';
     break;
   
     // caregiver
   case '/caregiver':
-    require '../Pages/caregiver.php';
+    require '../Controller/caregiver_controller.php';
     break;
   case '/caregiver-new':
-    require '../Pages/caregiver-new.php';
+    require '../Controller/caregiver_new_controller.php';
     break;
   case '/caregiver-update':
-    require '../Pages/caregiver-update.php';
+    require '../Controller/caregiver_update_controller.php';
     break;
   case '/caregiver-details':
-    require '../Pages/caregiver-details.php';
+    require '../Controller/caregiver_details_controller.php';
     break;
 
   // owner
   case '/owner':
-    require '../Pages/owner.php';
+    require '../Controller/owner_controller.php';
     break;
   case '/owner-new':
-    require '../Pages/owner-new.php';
+    require '../Controller/owner_new_controller.php';
     break;
   case '/owner-update':
-    require '../Pages/owner-update.php';
+    require '../Controller/owner_update_controller.php';
     break;
   case '/owner-details':
-    require '../Pages/owner-details.php';
+    require '../Controller/owner_details_controller.php';
     break;
 
   // adoption
   case '/adoption':
-    require '../Pages/adoption.php';
+    require '../Controller/adoption_controller.php';
     break;
   case '/adoption-new':
-    require '../Pages/adoption-new.php';
+    require '../Controller/adoption_new_controller.php';
     break;
   case '/adoption-update':
-    require '../Pages/adoption-update.php';
+    require '../Controller/adoption_update_controller.php';
     break;
   case '/adoption-details':
-    require '../Pages/adoption-details.php';
+    require '../Controller/adoption_details_controller.php';
     break;
     
   default:
-    require '../Pages/404.php';
+    require '../Controller/404_controller.php';
     break;
 }
 $content = ob_get_clean();

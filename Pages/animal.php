@@ -1,10 +1,4 @@
-<?php
 
-use App\Table\Animal;
-
-
-$animals = Animal::allAvailable();
-?>
 <a href="/animal-new" class="btn btn-primary">Ajouter un Animal</a>
 
 <div class="d-flex flex-wrap justify-content-around">

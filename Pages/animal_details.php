@@ -1,12 +1,3 @@
-<?php
-use App\Table\Animal;
-
-$class = Animal::getClass();
-$animal = Animal::find($_GET['id']);
-$id_caregiver= $animal->caregiver_id;
-$caregiver = Animal::getCaregiver($id_caregiver);
-$adoption_dates = Animal::getAdoptionDateByAnimal($animal->id);
-?>
 <div class="d-flex justify-content-center">
   <div class="card mb-3 w-50 center">
     <img src="Public/img/<?= $animal->animal_picture == "" ? "avatar_animal.jpg" : "upload/$animal->animal_picture" ?>" 

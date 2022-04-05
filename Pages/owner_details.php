@@ -1,11 +1,3 @@
-<?php
-use App\Table\Owner;
-
-$class = Owner::getClass();
-$owner = Owner::find($_GET['id']);
-$animal_by_owner = Owner::animalByOwner($owner->id);
-?>
-
 <div class="d-flex justify-content-center">
   <div class="card mb-3 w-50 center">
     <div class="card-body">
